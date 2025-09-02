@@ -1,0 +1,2429 @@
+<!DOCTYPE html> 
+
+ <html lang="en" class="dark"> 
+
+ <head> 
+
+     <meta charset="UTF-8"> 
+
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+
+     <title>Odong League Indonesia - EAFC Clubs Competition</title> 
+
+     <script src="https://cdn.tailwindcss.com"></script> 
+
+     <link rel="preconnect" href="https://fonts.googleapis.com"> 
+
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+
+     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Teko:wght@700&display=swap" rel="stylesheet"> 
+
+     <script> 
+
+         tailwind.config = { 
+
+             theme: { 
+
+                 extend: { 
+
+                     colors: { 
+
+                         'brand-primary': '#65de1f', 
+
+                         'brand-secondary': '#1ac1fe', 
+
+                         'brand-dark': '#131313', 
+
+                         'brand-light': '#ffffff', 
+
+                     }, 
+
+                     fontFamily: { 
+
+                         'heading': ['Teko', 'sans-serif'], 
+
+                         'body': ['Roboto Mono', 'monospace'], 
+
+                     } 
+
+                 } 
+
+             } 
+
+         } 
+
+     </script> 
+
+     <style> 
+
+         body { 
+
+             font-family: 'body', 'Roboto Mono', monospace; 
+
+             background-color: #131313; 
+
+             color: #ffffff; 
+
+         } 
+
+         h1, h2, h3, h4, h5, h6 { 
+
+             font-family: 'heading', 'Teko', 'sans-serif'; 
+
+         } 
+
+         .page { display: none; } 
+
+         .page.active { display: block; animation: fadeIn 0.5s ease-in-out; } 
+
+         @keyframes fadeIn { 
+
+             from { opacity: 0; transform: translateY(10px); } 
+
+             to { opacity: 1; transform: translateY(0); } 
+
+         } 
+
+         ::-webkit-scrollbar { width: 8px; } 
+
+         ::-webkit-scrollbar-track { background: #1f2937; } 
+
+         ::-webkit-scrollbar-thumb { background: #65de1f; border-radius: 4px; } 
+
+         ::-webkit-scrollbar-thumb:hover { background: #1ac1fe; } 
+
+         .hero-bg { 
+
+              background: linear-gradient(rgba(19, 19, 19, 0.8), rgba(19, 19, 19, 1)), url('https://placehold.co/1200x600/131313/ffffff?text=EAFC+Action'); 
+
+              background-size: cover; 
+
+              background-position: center; 
+
+         } 
+
+     </style> 
+
+ </head> 
+
+ <body class="bg-brand-dark text-brand-light"> 
+
+
+
+     <!-- Header and Navigation --> 
+
+     <header class="bg-brand-dark/70 backdrop-blur-sm sticky top-0 z-50 border-b border-brand-primary/20"> 
+
+         <nav class="container mx-auto px-4 sm:px-6 lg:px-8"> 
+
+             <div class="flex items-center justify-between h-16"> 
+
+                 <div class="flex items-center"> 
+
+                     <a href="#" class="flex items-center gap-2" data-action="navigate" data-page="home"> 
+
+                         <img src="https://i.ibb.co/6rWd9gX/Odong-League.jpg" alt="Odong League Logo" class="h-12"> 
+
+                         <span class="font-heading font-bold text-3xl text-brand-light hidden sm:block"> 
+
+                             <span class="text-brand-primary">ODONG</span>LEAGUE 
+
+                         </span> 
+
+                     </a> 
+
+                 </div> 
+
+                 <div class="hidden md:block"> 
+
+                     <div class="ml-10 flex items-baseline space-x-4"> 
+
+                         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" data-action="navigate" data-page="home">Home</a> 
+
+                         <div class="relative" id="divisions-dropdown-container"> 
+
+                              <button type="button" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium inline-flex items-center"> 
+
+                                 <span>Divisions</span> 
+
+                                 <svg class="ml-1 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" /></svg> 
+
+                             </button> 
+
+                             <div id="divisions-dropdown" class="origin-top-right absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 focus:outline-none hidden"> 
+
+                                 <div class="py-1"> 
+
+                                     <a href="#" class="text-gray-300 block px-4 py-2 text-sm hover:bg-gray-700" data-action="navigate" data-page="tier1">Tier 1</a> 
+
+                                     <a href="#" class="text-gray-300 block px-4 py-2 text-sm hover:bg-gray-700" data-action="navigate" data-page="tier2">Tier 2</a> 
+
+                                 </div> 
+
+                             </div> 
+
+                         </div> 
+
+                         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" data-action="navigate" data-page="transfer-market">Transfer Market</a> 
+
+                         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium my-team-link hidden" data-action="navigate" data-page="my-team">My Team</a> 
+
+                         <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium admin-link hidden" data-action="navigate" data-page="admin">Admin</a> 
+
+                         <div class="flex items-center space-x-4 pl-6"> 
+
+                             <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium logged-out" data-action="navigate" data-page="login">Login</a> 
+
+                             <a href="#" class="bg-brand-primary text-brand-dark font-bold hover:bg-brand-secondary px-4 py-2 rounded-md text-sm logged-out" data-action="navigate" data-page="register">Register</a> 
+
+                             <a href="#" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium logged-in hidden" data-action="navigate" data-page="profile">Profile</a> 
+
+                             <a href="#" class="logout-link bg-red-600 text-white hover:bg-red-700 px-4 py-2 rounded-md text-sm font-medium logged-in hidden" data-action="logout">Logout</a> 
+
+                         </div> 
+
+                     </div> 
+
+                 </div> 
+
+                 <div class="-mr-2 flex md:hidden"> 
+
+                     <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"> 
+
+                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg> 
+
+                         <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg> 
+
+                     </button> 
+
+                 </div> 
+
+             </div> 
+
+         </nav> 
+
+         <div class="md:hidden hidden" id="mobile-menu"> 
+
+             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3"> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-action="navigate" data-page="home">Home</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-action="navigate" data-page="tier1">Tier 1</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-action="navigate" data-page="tier2">Tier 2</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium" data-action="navigate" data-page="transfer-market">Transfer Market</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium my-team-link hidden" data-action="navigate" data-page="my-team">My Team</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium admin-link hidden" data-action="navigate" data-page="admin">Admin</a> 
+
+                 <hr class="border-gray-700 my-2"> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium logged-out" data-action="navigate" data-page="login">Login</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium logged-out" data-action="navigate" data-page="register">Register</a> 
+
+                 <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium logged-in hidden" data-action="navigate" data-page="profile">Profile</a> 
+
+                 <a href="#" class="logout-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium logged-in hidden" data-action="logout">Logout</a> 
+
+             </div> 
+
+         </div> 
+
+     </header> 
+
+
+
+     <main class="container mx-auto p-4 sm:p-6 lg:p-8"> 
+
+         <!-- Toast Notifications --> 
+
+         <div id="toast" class="fixed top-20 right-5 bg-brand-primary text-brand-dark font-bold py-2 px-4 rounded-lg shadow-md transition-all transform translate-x-full z-50"></div> 
+
+         <div id="error-toast" class="fixed top-20 right-5 bg-red-600 text-white py-2 px-4 rounded-lg shadow-md transition-all transform translate-x-full z-50"></div> 
+
+
+
+         <!-- All page content will be injected into these containers --> 
+
+         <div id="home-page" class="page"></div> 
+
+         <div id="tier1-page" class="page"></div> 
+
+         <div id="tier2-page" class="page"></div> 
+
+         <div id="transfer-market-page" class="page"></div> 
+
+         <div id="my-team-page" class="page"></div> 
+
+         <div id="team-page" class="page"></div> 
+
+         <div id="player-page" class="page"></div> 
+
+         <div id="register-page" class="page"></div> 
+
+         <div id="login-page" class="page"></div> 
+
+         <div id="profile-page" class="page"></div> 
+
+         <div id="admin-page" class="page"></div> 
+
+     </main> 
+
+
+
+     <footer class="bg-brand-dark mt-12 border-t border-brand-primary/20"> 
+
+         <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm"> 
+
+             &copy; 2025 Odong League Indonesia. All rights reserved. A fictional league for EAFC Clubs. 
+
+         </div> 
+
+     </footer> 
+
+
+
+     <script> 
+
+         const App = { 
+
+             // --- STATE & DATABASE --- 
+
+             state: { 
+
+                 currentUser: null, 
+
+                 currentPage: 'home', 
+
+                 lastViewedTier: 'tier1', 
+
+                 activeDivisionTab: null, 
+
+                 activeSubPageTab: 'standings', 
+
+                 params: {}, 
+
+                 dropdownTimeout: null, 
+
+                 isProfileInEditMode: false, 
+
+             }, 
+
+             db: { 
+
+                 config: { isTeamRegistrationOpen: false }, 
+
+                 users: [ 
+
+                     {id: 1, psn: 'admin', password: 'adminpassword', role: 'Admin', fullName: 'Admin User', email: 'admin@odong.league', whatsapp: '08123', pos1: 'CAM', pos2: 'ST', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                     {id: 2, psn: 'BudiSantoso', password: 'password', role: 'Manager', fullName: 'Budi Santoso', email: 'budi@odong.league', whatsapp: '08123', pos1: 'CM', pos2: 'CDM', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                     {id: 3, psn: 'RizkyPutra', password: 'password', role: 'Manager', fullName: 'Rizky Putra', email: 'rizky@odong.league', whatsapp: '08123', pos1: 'CB', pos2: 'GK', nationality: 'Indonesia', profilePictureUrl: 'https://placehold.co/100x100/1ac1fe/ffffff?text=RP'}, 
+
+                     {id: 4, psn: 'BambangRocket20', password: 'password', role: 'Player', fullName: 'Bambang Pamungkas', email: 'bambang@odong.league', whatsapp: '08123', pos1: 'ST', pos2: 'LW', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                     {id: 5, psn: 'EvanD_Control', password: 'password', role: 'Player', fullName: 'Evan Dimas', email: 'evan@odong.league', whatsapp: '081234', pos1: 'CAM', pos2: 'CM', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                     {id: 6, psn: 'RikoVR25', password: 'password', role: 'Player', fullName: 'Riko Simanjuntak', email: 'riko@odong.league', whatsapp: '081235', pos1: 'RW', pos2: 'RM', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                     {id: 7, psn: 'SultanOfBorneo', password: 'password', role: 'Player', fullName: 'Sultan Samma', email: 'sultan@odong.league', whatsapp: '081236', pos1: 'CM', pos2: 'CAM', nationality: 'Indonesia', profilePictureUrl: null}, 
+
+                 ], 
+
+                 divisions: [  
+
+                     { id: 1, name: 'Odong League Elite Division', tier: 1, logo: 'https://i.ibb.co/L05gH3L/Odong-League-Elite.png' },  
+
+                     { id: 2, name: 'Odong League Premier Division', tier: 2, logo: 'https://i.ibb.co/d2xL5r7/Odong-League-Premier.png' },  
+
+                     { id: 3, name: 'Odong League Championship Division', tier: 2, logo: 'https://i.ibb.co/fH1k06j/Odong-League-Championship.png' },  
+
+                     { id: 4, name: 'Odong League Community Division', tier: 2, logo: 'https://i.ibb.co/L9nZJ5X/Odong-League-Community.png' } 
+
+                 ], 
+
+                 teams: [ 
+
+                     { id: 1, name: 'Garuda FC', divisionId: 1, managerId: 2, assistantManagerId: 4, logo: 'https://placehold.co/100x100/312e81/e0e7ff?text=GFC', stats: { mp: 10, w: 8, d: 1, l: 1, pts: 25, gf: 25, ga: 7, gd: 18 } }, 
+
+                     { id: 2, name: 'Persija Esports', divisionId: 1, managerId: 3, assistantManagerId: null, logo: 'https://placehold.co/100x100/991b1b/fee2e2?text=PJE', stats: { mp: 10, w: 7, d: 2, l: 1, pts: 23, gf: 20, ga: 8, gd: 12 } }, 
+
+                     { id: 3, name: 'Borneo Gaming', divisionId: 1, managerId: null, assistantManagerId: null, logo: 'https://placehold.co/100x100/c2410c/fff7ed?text=BG', stats: { mp: 10, w: 6, d: 1, l: 3, pts: 19, gf: 18, ga: 12, gd: 6 } }, 
+
+                     { id: 4, name: 'Bali Cyber', divisionId: 2, managerId: null, assistantManagerId: null, logo: 'https://placehold.co/100x100/be123c/ffe4e6?text=BUC', stats: { mp: 10, w: 7, d: 0, l: 3, pts: 21, gf: 22, ga: 15, gd: 7 } }, 
+
+                 ], 
+
+                 players: [ 
+
+                     { id: 1, psn: 'BambangRocket20', teamId: 1, position: 'ST', careerStats: [{ season: 'OLI S1', teamId: 1, appearances: 10, goals: 12, assists: 5, motm: 4, tackles: 5, pass_accuracy: 75 }] }, 
+
+                     { id: 2, psn: 'EvanD_Control', teamId: 1, position: 'CAM', careerStats: [{ season: 'OLI S1', teamId: 1, appearances: 10, goals: 5, assists: 10, motm: 3, tackles: 15, pass_accuracy: 92 }] }, 
+
+                     { id: 3, psn: 'RikoVR25', teamId: 2, position: 'RW', careerStats: [{ season: 'OLI S1', teamId: 2, appearances: 9, goals: 7, assists: 8, motm: 2, tackles: 8, pass_accuracy: 85 }] }, 
+
+                     { id: 4, psn: 'SultanOfBorneo', teamId: null, position: 'CM', careerStats: [{ season: 'OLI S1', teamId: 3, appearances: 10, goals: 4, assists: 6, motm: 1, tackles: 25, pass_accuracy: 89 }] }, 
+
+                 ], 
+
+                 matches: [ { id: 1, homeTeamId: 1, awayTeamId: 2, homeScore: 3, awayScore: 1, date: '2025-08-28', status: 'finished' }, { id: 2, homeTeamId: 3, awayTeamId: 1, homeScore: 2, awayScore: 2, date: '2025-08-29', status: 'finished' }, { id: 3, homeTeamId: 1, awayTeamId: 3, homeScore: null, awayScore: null, date: '2025-09-05', status: 'upcoming' }, { id: 4, homeTeamId: 2, awayTeamId: 4, homeScore: null, awayScore: null, date: '2025-09-06', status: 'upcoming' }, ], 
+
+                 pendingTeams: [], 
+
+                 transferHistory: [{ id: 1, playerId: 4, fromTeamId: 3, toTeamId: null, date: '2025-08-25', type: 'Released' }], 
+
+                 transferOffers: [ { id: 1, playerId: 4, fromTeamId: 1, status: 'pending'} ], 
+
+             }, 
+
+              
+
+             maps: { users: {}, teams: {}, players: {} }, 
+
+             elements: {}, 
+
+
+
+             init() { 
+
+                 this.cacheDOMElements(); 
+
+                 this.createDataMaps(); 
+
+                 this.attachEventListeners(); 
+
+                 this.render(); 
+
+             }, 
+
+
+
+             cacheDOMElements() { 
+
+                 this.elements.pages = document.querySelectorAll('.page'); 
+
+                 this.elements.main = document.querySelector('main'); 
+
+                 this.elements.header = document.querySelector('header'); 
+
+                 this.elements.mobileMenu = document.getElementById('mobile-menu'); 
+
+                 this.elements.divisionsDropdown = document.getElementById('divisions-dropdown'); 
+
+             }, 
+
+              
+
+             createDataMaps() { 
+
+                 this.db.users.forEach(u => this.maps.users[u.id] = u); 
+
+                 this.db.teams.forEach(t => this.maps.teams[t.id] = t); 
+
+                 this.db.players.forEach(p => this.maps.players[p.id] = p); 
+
+             }, 
+
+
+
+             route(page, params = {}) { 
+
+                 if (this.state.currentUser && (page === 'login' || page === 'register')) { 
+
+                     this.route('home'); 
+
+                     return;  
+
+                 } 
+
+                  
+
+                 if (page !== 'profile') { 
+
+                     this.state.isProfileInEditMode = false; 
+
+                 } 
+
+                 if (this.state.currentPage === 'tier1' || this.state.currentPage === 'tier2') { 
+
+                     if (page !== 'tier1' && page !== 'tier2') { 
+
+                         this.state.activeSubPageTab = 'standings'; 
+
+                     } 
+
+                 } 
+
+                 this.state.currentPage = page; 
+
+                 this.state.params = params; 
+
+                 if (page === 'tier1' || page === 'tier2') { 
+
+                     this.state.lastViewedTier = page; 
+
+                 } 
+
+                 window.scrollTo(0, 0); 
+
+                 this.render(); 
+
+             }, 
+
+
+
+             render() { 
+
+                 this.renderNav(); 
+
+                 this.elements.pages.forEach(p => p.classList.remove('active')); 
+
+                 const pageElement = document.getElementById(`${this.state.currentPage}-page`); 
+
+                 if (pageElement) { 
+
+                     pageElement.innerHTML = this.getPageContent(this.state.currentPage, this.state.params); 
+
+                     pageElement.classList.add('active'); 
+
+                 } 
+
+             }, 
+
+
+
+             getPageContent(page, params) { 
+
+                 switch (page) { 
+
+                     case 'home': return this.templates.home(); 
+
+                     case 'tier1': return this.templates.tier(1); 
+
+                     case 'tier2': return this.templates.tier(2); 
+
+                     case 'team': return this.templates.team(params.id); 
+
+                     case 'player': return this.templates.player(params.id); 
+
+                     case 'transfer-market': return this.templates.transferMarket(); 
+
+                     case 'my-team': return this.templates.myTeam(); 
+
+                     case 'admin': return this.templates.admin(); 
+
+                     case 'login': return this.templates.login(); 
+
+                     case 'register': return this.templates.register(); 
+
+                     case 'profile': return this.templates.profile(); 
+
+                     default: return this.templates.home(); 
+
+                 } 
+
+             }, 
+
+
+
+             renderNav() { 
+
+                 const { currentUser } = this.state; 
+
+                 let isManagerOrAssistant = false; 
+
+                 if (currentUser) { 
+
+                     isManagerOrAssistant = this.db.teams.some(t => t.managerId === currentUser.id || t.assistantManagerId === currentUser.id); 
+
+                 } 
+
+
+
+                 document.querySelectorAll('.logged-in').forEach(el => el.classList.toggle('hidden', !currentUser)); 
+
+                 document.querySelectorAll('.logged-out').forEach(el => el.classList.toggle('hidden', !!currentUser)); 
+
+                 document.querySelectorAll('.admin-link').forEach(el => el.classList.toggle('hidden', !(currentUser?.role === 'Admin'))); 
+
+                 document.querySelectorAll('.my-team-link').forEach(el => el.classList.toggle('hidden', !isManagerOrAssistant)); 
+
+             }, 
+
+
+
+             templates: { 
+
+                 home() { 
+
+                     const finishedMatches = App.db.matches.filter(m => m.status === 'finished').slice(-2).reverse(); 
+
+                     const eliteTeams = App.db.teams.filter(t => t.divisionId === 1).sort((a,b)=>b.stats.pts - a.stats.pts).slice(0,5); 
+
+                     const featuredPlayers = [...App.db.players] 
+
+                         .filter(p => p.careerStats.length > 0) 
+
+                         .sort((a,b) => (b.careerStats[0].goals + b.careerStats[0].assists) - (a.careerStats[0].goals + a.careerStats[0].assists)) 
+
+                         .slice(0,4); 
+
+                     return ` 
+
+                         <div class="hero-bg text-white text-center py-20 px-4 rounded-lg shadow-xl mb-12"> 
+
+                             <h1 class="text-6xl font-heading tracking-tight uppercase">Odong League Indonesia</h1> 
+
+                             <p class="text-xl text-brand-secondary mt-2">The Premier EAFC Pro Clubs Competition in the Nation</p> 
+
+                             <a href="#" data-action="navigate" data-page="register" class="mt-8 inline-block bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-8 rounded-lg">Join The League</a> 
+
+                         </div> 
+
+                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> 
+
+                             <div class="lg:col-span-2"> 
+
+                                 <h2 class="text-4xl font-heading text-white mb-6 border-l-4 border-brand-primary pl-4">Latest Results</h2> 
+
+                                 <div class="space-y-4">${finishedMatches.map(m => App.templates.components.matchResult(m)).join('')}</div> 
+
+                             </div> 
+
+                             <div> 
+
+                                 <h2 class="text-4xl font-heading text-white mb-6 border-l-4 border-brand-primary pl-4">Elite Division</h2> 
+
+                                 <div class="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-800"> 
+
+                                     <table class="w-full text-sm"> 
+
+                                         <thead><tr class="text-left text-gray-400"><th class="p-2">#</th><th class="p-2">Team</th><th class="p-2">Pts</th></tr></thead> 
+
+                                         <tbody>${eliteTeams.map((t,i) => App.templates.components.miniStandingsRow(t,i)).join('')}</tbody> 
+
+                                     </table> 
+
+                                 </div> 
+
+                             </div> 
+
+                         </div> 
+
+                         <section class="mt-12"> 
+
+                             <h2 class="text-4xl font-heading text-white mb-6 border-l-4 border-brand-primary pl-4">Players of the Week</h2> 
+
+                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">${featuredPlayers.map(p => App.templates.components.playerCard(p)).join('')}</div> 
+
+                         </section> 
+
+                     `; 
+
+                 }, 
+
+                 tier(tier) { 
+
+                     const tierDivs = App.db.divisions.filter(d => d.tier === tier); 
+
+                     if (!App.state.activeDivisionTab || !tierDivs.some(d => d.id === App.state.activeDivisionTab)) { 
+
+                         App.state.activeDivisionTab = tierDivs[0]?.id; 
+
+                     } 
+
+                     const activeDivId = App.state.activeDivisionTab; 
+
+                     const activeDivision = App.db.divisions.find(d => d.id === activeDivId); 
+
+                      
+
+                     let content = ''; 
+
+                     switch(App.state.activeSubPageTab) { 
+
+                         case 'schedule': 
+
+                             content = this.components.divisionSchedule(activeDivId, 'upcoming'); 
+
+                             break; 
+
+                         case 'results': 
+
+                             content = this.components.divisionSchedule(activeDivId, 'finished'); 
+
+                             break; 
+
+                         case 'stats': 
+
+                             content = this.components.divisionStats(activeDivId); 
+
+                             break; 
+
+                         default: // 'standings' 
+
+                             content = this.components.standingsTable(activeDivId); 
+
+                     } 
+
+
+
+                     let divisionSelector = ''; 
+
+                     if (tier === 1 && tierDivs.length > 0) { 
+
+                         divisionSelector = ` 
+
+                         <div class="bg-gray-900/50 rounded-lg border border-gray-800 p-2 mb-6"> 
+
+                             <div class="whitespace-nowrap bg-brand-primary text-brand-dark font-bold py-3 px-4 rounded-md text-sm inline-block">${tierDivs[0].name}</div> 
+
+                         </div> 
+
+                         `; 
+
+                     } else { 
+
+                         divisionSelector = ` 
+
+                         <div class="bg-gray-900/50 rounded-lg border border-gray-800 p-2 mb-6"> 
+
+                             <nav class="-mb-px flex flex-wrap space-x-6"> 
+
+                                 ${tierDivs.map(div => `<a href="#" data-action="switchDivisionTab" data-division-id="${div.id}" class="whitespace-nowrap ${div.id === activeDivId ? 'bg-brand-primary text-brand-dark' : 'text-gray-300'} hover:bg-gray-700 font-bold py-3 px-4 rounded-md text-sm">${div.name}</a>`).join('')} 
+
+                             </nav> 
+
+                         </div> 
+
+                         `; 
+
+                     } 
+
+
+
+                     return ` 
+
+                          <div class="flex items-center gap-6 mb-8 pb-6 border-b border-gray-800"> 
+
+                             <img src="${activeDivision.logo}" class="w-24 h-24" alt="${activeDivision.name} Logo"> 
+
+                             <div> 
+
+                                 <h1 class="text-5xl font-heading text-white mb-2 tracking-tight">Tier ${tier} Divisions</h1> 
+
+                                 <p class="text-gray-400">${tier === 1 ? 'The pinnacle of the Odong League competition.' : 'The proving grounds for aspiring clubs.'}</p> 
+
+                             </div> 
+
+                         </div> 
+
+                          
+
+                         ${divisionSelector} 
+
+                          
+
+                         <div class="border-b border-gray-700 mb-6"> 
+
+                            <nav class="-mb-px flex space-x-8"> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="standings" class="${App.state.activeSubPageTab === 'standings' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Standings</a> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="schedule" class="${App.state.activeSubPageTab === 'schedule' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Schedule</a> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="results" class="${App.state.activeSubPageTab === 'results' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Results</a> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="stats" class="${App.state.activeSubPageTab === 'stats' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Stats Leaders</a> 
+
+                             </nav> 
+
+                         </div> 
+
+
+
+                         <div>${content}</div>`; 
+
+                 }, 
+
+                 team(teamId) { 
+
+                      const team = App.maps.teams[teamId]; 
+
+                      if (!team) return `<p>Team not found.</p>`; 
+
+                      const players = App.db.players.filter(p => p.teamId === teamId); 
+
+                      const division = App.db.divisions.find(d => d.id === team.divisionId); 
+
+                      const manager = App.db.users.find(u => u.id === team.managerId); 
+
+                      const recentMatches = App.db.matches.filter(m => (m.homeTeamId === teamId || m.awayTeamId === teamId) && m.status === 'finished').slice(-3).reverse(); 
+
+
+
+                      return ` 
+
+                         <div class="mb-4"><a href="#" data-action="navigate" data-page="${App.state.lastViewedTier}" class="text-brand-primary hover:underline">&larr; Back to Divisions</a></div> 
+
+                          
+
+                         <header class="flex items-center gap-6 mb-8 pb-6 border-b border-gray-800"> 
+
+                              <img src="${team.logo}" class="w-24 h-24 rounded-full shadow-lg"> 
+
+                              <div class="flex flex-col"> 
+
+                                 <h1 class="text-5xl md:text-6xl font-heading text-white leading-none">${team.name}</h1> 
+
+                                 <div class="flex items-center gap-2"> 
+
+                                     <img src="${division.logo}" class="w-8 h-8" alt="${division.name} logo"> 
+
+                                     <p class="text-lg text-gray-400">${division.name}</p> 
+
+                                 </div> 
+
+                              </div> 
+
+                         </header> 
+
+
+
+                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> 
+
+                             <div class="lg:col-span-2"> 
+
+                                 <h2 class="text-4xl font-heading text-white mb-4">Active Roster</h2> 
+
+                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> 
+
+                                     ${players.map(p => this.components.rosterPlayerCard(p)).join('') || '<p class="text-gray-500 sm:col-span-2">This team has no players.</p>'} 
+
+                                 </div> 
+
+                                 <h2 class="text-4xl font-heading text-white mt-10 mb-4">Recent Results</h2> 
+
+                                 <div class="space-y-4"> 
+
+                                      ${recentMatches.map(m => this.components.teamMatchResult(m, team.id)).join('') || '<p class="text-gray-500">No recent match results.</p>'} 
+
+                                 </div> 
+
+                             </div> 
+
+                             <div class="lg:col-span-1 space-y-8"> 
+
+                                 <div class="bg-gray-900 rounded-lg p-4 border border-gray-800 sticky top-24"> 
+
+                                     <h3 class="text-2xl font-heading text-brand-primary mb-4 text-center">About Team</h3> 
+
+                                     <div class="space-y-3 text-sm"> 
+
+                                         <div class="flex justify-between items-center border-b border-gray-800 pb-2"><strong>Manager:</strong> <span>${manager ? manager.fullName : 'N/A'}</span></div> 
+
+                                         <div class="flex justify-between items-center border-b border-gray-800 pb-2"> 
+
+                                             <strong>Division:</strong>  
+
+                                             <a href="#" data-action="navigate" data-page="tier${division.tier}" class="text-brand-secondary hover:underline text-right flex items-center gap-2"> 
+
+                                                 <img src="${division.logo}" class="w-6 h-6" alt="${division.name} logo"> 
+
+                                                 <span>${division.name}</span> 
+
+                                             </a> 
+
+                                         </div> 
+
+                                         <div class="flex justify-between font-bold text-lg pt-2"> 
+
+                                             <span>W: <span class="text-green-400">${team.stats.w}</span></span> 
+
+                                             <span>D: <span class="text-yellow-400">${team.stats.d}</span></span> 
+
+                                             <span>L: <span class="text-red-400">${team.stats.l}</span></span> 
+
+                                         </div> 
+
+                                     </div> 
+
+                                 </div> 
+
+                                  <div class="bg-gray-900 rounded-lg p-4 border border-gray-800 sticky top-24"> 
+
+                                     <h3 class="text-2xl font-heading text-brand-primary mb-4 text-center">Division Standing</h3> 
+
+                                     ${this.components.miniDivisionStandings(team.divisionId, team.id)} 
+
+                                 </div> 
+
+                             </div> 
+
+                         </div>`; 
+
+                 }, 
+
+                 player(playerId) { 
+
+                     const player = App.maps.players[playerId]; 
+
+                     if (!player) return `<p>Player not found.</p>`; 
+
+                     const user = App.db.users.find(u => u.psn === player.psn); 
+
+                     const currentTeam = App.maps.teams[player.teamId]; 
+
+                     const originPage = currentTeam ? 'team' : 'transfer-market'; 
+
+                     return ` 
+
+                         <div class="mb-4"><a href="#" data-action="${originPage === 'team' ? 'viewTeam' : 'navigate'}" data-team-id="${currentTeam?.id || ''}" data-page="${originPage === 'team' ? '' : 'transfer-market'}" class="text-brand-primary hover:underline">&larr; Back to ${currentTeam ? currentTeam.name : 'Transfer Market'}</a></div> 
+
+                         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8"> 
+
+                             <div class="lg:col-span-2"> 
+
+                                 <h1 class="text-5xl font-heading text-white mb-4">${user?.fullName || player.psn}</h1> 
+
+                                 ${this.components.careerStatsTable(player)} 
+
+                             </div> 
+
+                             <div class="lg:col-span-1"> 
+
+                                 ${this.components.playerInfoBox(player, user, currentTeam)} 
+
+                                 ${this.components.transferHistory(player.id)} 
+
+                             </div> 
+
+                         </div>`; 
+
+                 }, 
+
+                 transferMarket() { 
+
+                      const freeAgents = App.db.players.filter(p => p.teamId === null); 
+
+                      const transferHistory = App.db.transferHistory.slice().reverse(); 
+
+                       
+
+                      App.state.activeSubPageTab = App.state.activeSubPageTab || 'free-agents'; 
+
+
+
+                      let content = ''; 
+
+                      if (App.state.activeSubPageTab === 'history') { 
+
+                          content = this.components.transferHistoryTable(transferHistory); 
+
+                      } else { // 'free-agents' 
+
+                          if (freeAgents.length === 0) { 
+
+                              content = `<p class="text-gray-400">There are currently no free agents available.</p>`; 
+
+                          } else { 
+
+                              content = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">${freeAgents.map(p => this.components.freeAgentCard(p)).join('')}</div>`; 
+
+                          } 
+
+                      } 
+
+
+
+                      return ` 
+
+                         <h1 class="text-5xl font-heading text-white mb-8 tracking-tight">Transfer Market</h1> 
+
+                         <div class="border-b border-gray-700 mb-6"> 
+
+                            <nav class="-mb-px flex space-x-8"> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="free-agents" class="${App.state.activeSubPageTab === 'free-agents' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Free Agents</a> 
+
+                                 <a href="#" data-action="switchSubPageTab" data-subpage="history" class="${App.state.activeSubPageTab === 'history' ? 'border-brand-primary text-brand-primary' : 'border-transparent text-gray-400'} whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Transfer History</a> 
+
+                             </nav> 
+
+                         </div> 
+
+                         <div>${content}</div> 
+
+                      `; 
+
+                 }, 
+
+                 myTeam() { 
+
+                     const { currentUser } = App.state; 
+
+                     if (!currentUser) return `<p>Access Denied.</p>`; 
+
+                     const myTeam = App.db.teams.find(t => t.managerId === currentUser.id || t.assistantManagerId === currentUser.id); 
+
+
+
+                     let content = `<h1 class="text-5xl font-heading text-white mb-8 tracking-tight">My Team Dashboard</h1>`; 
+
+                     if (myTeam) { 
+
+                         const myPlayers = App.db.players.filter(p => p.teamId === myTeam.id); 
+
+                         content += ` 
+
+                             <h2 class="text-3xl font-heading text-brand-secondary">${myTeam.name}</h2> 
+
+                              
+
+                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6"> 
+
+                                 <div> 
+
+                                     <h3 class="text-2xl font-heading text-white mb-4">Roster Management</h3> 
+
+                                     <div class="bg-gray-900 p-4 rounded-lg border border-gray-800"> 
+
+                                         ${myPlayers.map(p => this.components.rosterManagementRow(p, myTeam)).join('') || '<p class="text-gray-500 p-2">Your roster is empty.</p>'} 
+
+                                     </div> 
+
+                                 </div> 
+
+                                 <div> 
+
+                                     <h3 class="text-2xl font-heading text-white mb-4">Team Settings</h3> 
+
+                                     <form id="team-settings-form" class="bg-gray-900 p-4 rounded-lg border border-gray-800 space-y-4"> 
+
+                                         <div> 
+
+                                             <label for="team-logo" class="block text-sm font-medium text-gray-400">Team Logo URL</label> 
+
+                                             <input type="text" id="team-logo" name="teamLogoUrl" value="${myTeam.logo}" class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                         </div> 
+
+                                         <button type="submit" class="w-full bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-2 px-4 rounded-lg">Update Logo</button> 
+
+                                     </form> 
+
+                                 </div> 
+
+                             </div> 
+
+                             `; 
+
+                     } else if (App.db.pendingTeams.some(t => t.managerId === currentUser.id)) { 
+
+                         content += `<div class="bg-gray-900 p-6 rounded-lg border border-gray-800"><h2 class="text-2xl font-heading text-brand-secondary">Registration Pending</h2><p>Your team registration is submitted and awaiting admin approval.</p></div>`; 
+
+                     } else if (App.db.config.isTeamRegistrationOpen && currentUser.role === 'Manager') { 
+
+                         content += `<div class="bg-gray-900 p-6 rounded-lg border border-gray-800"><h2 class="text-2xl font-heading text-brand-secondary">Register Your Team</h2> 
+
+                             <form id="new-team-form" class="space-y-4 mt-4"> 
+
+                                 <input type="text" name="teamName" required placeholder="Enter Your Team Name" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                 <button type="submit" class="w-full bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-4 rounded-lg">Submit for Approval</button> 
+
+                             </form></div>`; 
+
+                     } else { 
+
+                         content += `<div class="bg-gray-900 p-6 rounded-lg border border-gray-800"><h2 class="text-2xl font-heading text-brand-secondary">No Team Found</h2><p>You are not currently managing a team. Team registration may be closed.</p></div>`; 
+
+                     } 
+
+                     return content; 
+
+                 }, 
+
+                 admin() { 
+
+                      if (App.state.currentUser?.role !== 'Admin') return `<p>Access Denied.</p>`; 
+
+                      const regStatus = App.db.config.isTeamRegistrationOpen; 
+
+                      return `<h1 class="text-4xl font-heading text-white mb-6">Admin Panel</h1> 
+
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8"> 
+
+                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800"> 
+
+                                 <h2 class="text-3xl font-heading text-brand-secondary mb-4">Team Registration</h2> 
+
+                                 <p class="mb-4">Current status: <span class="font-bold ${regStatus ? 'text-brand-primary' : 'text-red-500'}">${regStatus ? 'OPEN' : 'CLOSED'}</span></p> 
+
+                                 <button data-action="toggleReg" class="w-full ${regStatus ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'} text-white font-bold py-3 px-4 rounded-lg">${regStatus ? 'Close Registration' : 'Open Registration'}</button> 
+
+                             </div> 
+
+                             <div class="bg-gray-900 p-6 rounded-lg border border-gray-800"> 
+
+                                 <h2 class="text-3xl font-heading text-brand-secondary mb-4">Pending Teams (${App.db.pendingTeams.length})</h2> 
+
+                                 <div class="space-y-3"> 
+
+                                     ${App.db.pendingTeams.map(team => { 
+
+                                         const manager = App.db.users.find(u => u.id === team.managerId); 
+
+                                         return `<div class="bg-gray-800 p-3 rounded-md"> 
+
+                                             <p class="font-bold">${team.name}</p> 
+
+                                             <p class="text-sm text-gray-400">Manager: ${manager.psn}</p> 
+
+                                             <div class="mt-2"> 
+
+                                                 <select id="division-for-${team.id}" class="block w-full bg-gray-700 border-gray-600 rounded-md py-1 px-2 text-sm">${App.db.divisions.map(d=>`<option value="${d.id}">${d.name}</option>`).join('')}</select> 
+
+                                                 <div class="flex gap-2 mt-2"> 
+
+                                                     <button data-action="approveTeam" data-team-id="${team.id}" class="w-full bg-brand-primary text-brand-dark font-bold py-1 px-3 rounded text-xs">Approve</button> 
+
+                                                     <button data-action="rejectTeam" data-team-id="${team.id}" class="w-full bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">Reject</button> 
+
+                                                 </div> 
+
+                                             </div> 
+
+                                         </div>` 
+
+                                     }).join('') || '<p class="text-gray-500">No pending registrations.</p>'} 
+
+                                 </div> 
+
+                             </div> 
+
+                         </div>`; 
+
+                 }, 
+
+                 login() { 
+
+                      return `<div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-2xl shadow-brand-primary/10"> 
+
+                         <h1 class="text-4xl font-heading text-white mb-6 text-center">Welcome Back!</h1> 
+
+                         <form id="login-form" class="space-y-4"> 
+
+                             <div><label for="login-psn" class="block text-sm font-medium text-gray-400">Username (PSN)</label><input type="text" id="login-psn" name="psn" required class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"></div> 
+
+                             <div><label for="login-password" class="block text-sm font-medium text-gray-400">Password</label><input type="password" id="login-password" name="password" required class="mt-1 block w-full bg-gray-800 border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"></div> 
+
+                             <button type="submit" class="w-full bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-4 rounded-lg transition transform hover:scale-105">Log In</button> 
+
+                         </form> 
+
+                         <p class="text-center text-sm text-gray-500 mt-6">Don't have an account? <a href="#" data-action="navigate" data-page="register" class="font-medium text-brand-primary hover:text-brand-secondary">Register here</a></p> 
+
+                     </div>`; 
+
+                 }, 
+
+                 register() { 
+
+                      return `<div class="max-w-md mx-auto bg-gray-900 p-8 rounded-lg shadow-2xl shadow-brand-primary/10"> 
+
+                         <h1 class="text-4xl font-heading text-white mb-6 text-center">Create Your Account</h1> 
+
+                         <form id="register-form" class="space-y-4"> 
+
+                             <input type="text" name="fullname" required placeholder="Nama Lengkap" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <input type="text" name="psn" required placeholder="Username (PSN)" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <input type="email" name="email" required placeholder="Email" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <input type="tel" name="whatsapp" required placeholder="No. Whatsapp" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <div class="grid grid-cols-2 gap-4"> 
+
+                                 <select name="pos1" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"><option>Posisi 1</option><option>ST</option><option>MID</option><option>DEF</option><option>GK</option></select> 
+
+                                 <select name="pos2" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"><option>Posisi 2</option><option>ST</option><option>MID</option><option>DEF</option><option>GK</option></select> 
+
+                             </div> 
+
+                             <input type="password" name="password" required placeholder="Password" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <input type="password" name="confirm-password" required placeholder="Konfirmasi Password" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                             <button type="submit" class="w-full bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-4 rounded-lg">Register</button> 
+
+                         </form> 
+
+                         <p class="text-center text-sm text-gray-500 mt-6">Already have an account? <a href="#" data-action="navigate" data-page="login" class="font-medium text-brand-primary hover:text-brand-secondary">Log in</a></p> 
+
+                     </div>`; 
+
+                 }, 
+
+                 profile() { 
+
+                     if (!App.state.currentUser) return '<p>Please log in to see your profile.</p>'; 
+
+                     const user = App.state.currentUser; 
+
+                     const player = App.db.players.find(p => p.psn === user.psn); 
+
+
+
+                     if (App.state.isProfileInEditMode) { 
+
+                         return this.components.profileEditForm(user); 
+
+                     } 
+
+                      
+
+                     return `<div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-2xl shadow-brand-primary/10"> 
+
+                         <div class="flex flex-col sm:flex-row items-center gap-6 mb-6"> 
+
+                             ${this.components.avatar(user, 'w-32 h-32 text-5xl')} 
+
+                             <div class="text-center sm:text-left"> 
+
+                                 <h1 class="text-4xl font-heading text-white">${user.fullName}</h1> 
+
+                                 <p class="text-lg text-gray-400">${user.psn}</p> 
+
+                             </div> 
+
+                         </div> 
+
+                         ${this.components.transferOffers(player)} 
+
+                         <div class="space-y-3 text-gray-300"> 
+
+                             <div class="flex border-b border-gray-800 py-2"><strong class="w-1/3 text-gray-400">Email:</strong> <span>${user.email}</span></div> 
+
+                             <div class="flex border-b border-gray-800 py-2"><strong class="w-1/3 text-gray-400">Whatsapp:</strong> <span>${user.whatsapp}</span></div> 
+
+                             <div class="flex border-b border-gray-800 py-2"><strong class="w-1/3 text-gray-400">Position 1:</strong> <span>${user.pos1}</span></div> 
+
+                             <div class="flex border-b border-gray-800 py-2"><strong class="w-1/3 text-gray-400">Position 2:</strong> <span>${user.pos2}</span></div> 
+
+                             <div class="flex py-2"><strong class="w-1/3 text-gray-400">Nationality:</strong> <span>${user.nationality}</span></div> 
+
+                         </div> 
+
+                         <button data-action="editProfile" class="w-full mt-6 bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-4 rounded-lg">Edit Profile</button> 
+
+                     </div>`; 
+
+                 }, 
+
+                 components: { 
+
+                     avatar(user, sizeClasses = 'w-12 h-12 text-xl') { 
+
+                          if (user?.profilePictureUrl) { 
+
+                             return `<img src="${user.profilePictureUrl}" alt="${user.fullName}" class="${sizeClasses} bg-gray-900 rounded-full flex-shrink-0 object-cover border-2 border-brand-primary/50">`; 
+
+                          } 
+
+                          const displayName = user ? user.fullName : '...'; 
+
+                          const initial = displayName ? displayName.charAt(0).toUpperCase() : '?'; 
+
+                          return `<div class="${sizeClasses} bg-gray-900 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-brand-primary pointer-events-none border-2 border-brand-primary/50">${initial}</div>`; 
+
+                     }, 
+
+                     profileEditForm(user) { 
+
+                          return `<div class="max-w-2xl mx-auto bg-gray-900 p-8 rounded-lg shadow-2xl shadow-brand-primary/10"> 
+
+                             <h1 class="text-4xl font-heading text-white mb-6">Edit Your Profile</h1> 
+
+                             <form id="edit-profile-form" class="space-y-4"> 
+
+                                 <label class="block text-sm font-medium text-gray-400">Profile Picture URL</label> 
+
+                                 <input type="text" name="profilePictureUrl" value="${user.profilePictureUrl || ''}" placeholder="https://..." class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                  
+
+                                 <label class="block text-sm font-medium text-gray-400">Full Name</label> 
+
+                                 <input type="text" name="fullName" value="${user.fullName}" required class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                  
+
+                                 <label class="block text-sm font-medium text-gray-400">Email</label> 
+
+                                 <input type="email" name="email" value="${user.email}" required class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+
+
+                                 <label class="block text-sm font-medium text-gray-400">Whatsapp</label> 
+
+                                 <input type="tel" name="whatsapp" value="${user.whatsapp}" required class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                  
+
+                                 <div class="flex gap-4"> 
+
+                                     <div class="w-1/2"> 
+
+                                         <label class="block text-sm font-medium text-gray-400">Position 1</label> 
+
+                                         <select name="pos1" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                             <option ${user.pos1 === 'ST' ? 'selected' : ''}>ST</option> 
+
+                                             <option ${user.pos1 === 'MID' ? 'selected' : ''}>MID</option> 
+
+                                             <option ${user.pos1 === 'DEF' ? 'selected' : ''}>DEF</option> 
+
+                                             <option ${user.pos1 === 'GK' ? 'selected' : ''}>GK</option> 
+
+                                         </select> 
+
+                                     </div> 
+
+                                     <div class="w-1/2"> 
+
+                                         <label class="block text-sm font-medium text-gray-400">Position 2</label> 
+
+                                          <select name="pos2" class="block w-full bg-gray-800 border-gray-700 rounded-md py-2 px-3 focus:outline-none focus:ring-brand-primary focus:border-brand-primary"> 
+
+                                             <option ${user.pos2 === 'ST' ? 'selected' : ''}>ST</option> 
+
+                                             <option ${user.pos2 === 'MID' ? 'selected' : ''}>MID</option> 
+
+                                             <option ${user.pos2 === 'DEF' ? 'selected' : ''}>DEF</option> 
+
+                                             <option ${user.pos2 === 'GK' ? 'selected' : ''}>GK</option> 
+
+                                         </select> 
+
+                                     </div> 
+
+                                 </div> 
+
+                                 <div class="flex gap-4 pt-4"> 
+
+                                     <button type="submit" class="w-1/2 bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-3 px-4 rounded-lg">Save Changes</button> 
+
+                                     <button type="button" data-action="cancelEditProfile" class="w-1/2 bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg">Cancel</button> 
+
+                                 </div> 
+
+                             </form> 
+
+                         </div>`; 
+
+                     }, 
+
+                     matchResult(match) { 
+
+                         const home = App.maps.teams[match.homeTeamId]; 
+
+                         const away = App.maps.teams[match.awayTeamId]; 
+
+                         return `<div class="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-800 flex items-center justify-between"><div class="flex items-center gap-3 w-2/5 justify-end cursor-pointer" data-action="viewTeam" data-team-id="${home.id}"><span class="font-bold pointer-events-none text-right flex-1">${home.name}</span><img src="${home.logo}" class="w-8 h-8 rounded-full pointer-events-none"></div><div class="font-bold text-2xl font-heading">${match.homeScore} - ${match.awayScore}</div><div class="flex items-center gap-3 w-2/5 cursor-pointer" data-action="viewTeam" data-team-id="${away.id}"><img src="${away.logo}" class="w-8 h-8 rounded-full pointer-events-none"><span class="font-bold pointer-events-none flex-1">${away.name}</span></div></div>`; 
+
+                     }, 
+
+                     teamMatchResult(match, currentTeamId) { 
+
+                         const isHome = match.homeTeamId === currentTeamId; 
+
+                         const opponent = isHome ? App.maps.teams[match.awayTeamId] : App.maps.teams[match.homeTeamId]; 
+
+                         const teamScore = isHome ? match.homeScore : match.awayScore; 
+
+                         const opponentScore = isHome ? match.awayScore : match.homeScore; 
+
+
+
+                         let resultTag = ''; 
+
+                         if (teamScore > opponentScore) { 
+
+                             resultTag = '<span class="font-bold text-green-400 text-xl w-6">W</span>'; 
+
+                         } else if (teamScore < opponentScore) { 
+
+                             resultTag = '<span class="font-bold text-red-400 text-xl w-6">L</span>'; 
+
+                         } else { 
+
+                             resultTag = '<span class="font-bold text-yellow-400 text-xl w-6">D</span>'; 
+
+                         } 
+
+
+
+                         return ` 
+
+                             <div class="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-800 flex items-center justify-between"> 
+
+                                 <div class="flex items-center gap-4"> 
+
+                                     ${resultTag} 
+
+                                     <span class="font-bold text-2xl font-heading">${teamScore} - ${opponentScore}</span> 
+
+                                 </div> 
+
+                                 <div class="flex items-center gap-3 cursor-pointer" data-action="viewTeam" data-team-id="${opponent.id}"> 
+
+                                     <span class="font-bold pointer-events-none text-right">vs ${opponent.name}</span> 
+
+                                     <img src="${opponent.logo}" class="w-8 h-8 rounded-full pointer-events-none"> 
+
+                                 </div> 
+
+                             </div>`; 
+
+                     }, 
+
+                     miniStandingsRow(team, index) { 
+
+                          return `<tr class="border-t border-gray-800"><td class="p-2">${index+1}</td><td class="p-2 font-bold text-brand-secondary cursor-pointer" data-action="viewTeam" data-team-id="${team.id}">${team.name}</td><td class="p-2 font-bold">${team.stats.pts}</td></tr>`; 
+
+                     }, 
+
+                      miniDivisionStandings(divisionId, highlightTeamId) { 
+
+                         const teams = App.db.teams.filter(t => t.divisionId === divisionId).sort((a,b) => b.stats.pts - a.stats.pts); 
+
+                         if (teams.length === 0) return '<p class="text-gray-500 text-sm">No teams in this division yet.</p>'; 
+
+                          
+
+                         let content = `<table class="w-full text-sm"><thead><tr class="text-left text-gray-400"><th class="p-2">#</th><th class="p-2">Team</th><th class="p-2">Pts</th></tr></thead><tbody>`; 
+
+                          
+
+                         teams.forEach((team, i) => { 
+
+                              const isHighlighted = team.id === highlightTeamId; 
+
+                              content += `<tr class="${isHighlighted ? 'bg-brand-primary/10' : ''} border-t border-gray-800"><td class="p-2">${i+1}</td><td class="p-2 font-bold ${isHighlighted ? 'text-brand-primary' : 'text-brand-secondary'} cursor-pointer" data-action="viewTeam" data-team-id="${team.id}">${team.name}</td><td class="p-2 font-bold">${team.stats.pts}</td></tr>`; 
+
+                         }); 
+
+
+
+                         content += `</tbody></table>`; 
+
+                         return content; 
+
+                     }, 
+
+                     playerCard(player) { 
+
+                         const user = App.db.users.find(u => u.psn === player.psn); 
+
+                         return `<div class="bg-gray-900 p-4 rounded-lg shadow-lg text-center border border-gray-800 hover:border-brand-primary transition-colors cursor-pointer" data-action="viewPlayer" data-player-id="${player.id}"> 
+
+                             ${this.avatar(user, 'w-20 h-20 text-3xl mx-auto mb-3')} 
+
+                             <h3 class="font-bold text-brand-primary text-lg pointer-events-none">${user?.fullName || player.psn}</h3> 
+
+                             <p class="text-sm text-gray-400 pointer-events-none">${player.psn}</p> 
+
+                             <p class="text-xs text-gray-500 pointer-events-none">${player.position}</p> 
+
+                         </div>`; 
+
+                     }, 
+
+                     standingsTable(divisionId) { 
+
+                         const teams = App.db.teams.filter(t => t.divisionId === divisionId).sort((a,b) => b.stats.pts - a.stats.pts); 
+
+                         return `<div class="overflow-x-auto bg-gray-900 rounded-lg shadow-lg border border-gray-800"><table class="min-w-full"><thead class="bg-gray-800"><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Pos</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Team</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">MP</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">W</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">D</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">L</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">GD</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase">Pts</th></tr></thead><tbody class="divide-y divide-gray-800">${teams.map((team, i) => `<tr class="hover:bg-gray-800"><td class="px-6 py-4 font-medium">${i+1}</td><td class="px-6 py-4 font-bold"><a href="#" data-action="viewTeam" data-team-id="${team.id}" class="text-brand-secondary hover:underline">${team.name}</a></td><td class="px-6 py-4">${team.stats.mp}</td><td class="px-6 py-4">${team.stats.w}</td><td class="px-6 py-4">${team.stats.d}</td><td class="px-6 py-4">${team.stats.l}</td><td class="px-6 py-4">${team.stats.gd > 0 ? '+' : ''}${team.stats.gd}</td><td class="px-6 py-4 font-bold text-white">${team.stats.pts}</td></tr>`).join('')}</tbody></table></div>`; 
+
+                     }, 
+
+                     divisionSchedule(divisionId, filterStatus) { 
+
+                         const divisionTeamIds = App.db.teams.filter(t => t.divisionId === divisionId).map(t => t.id); 
+
+                         let matches = App.db.matches.filter(m => divisionTeamIds.includes(m.homeTeamId) || divisionTeamIds.includes(m.awayTeamId)); 
+
+                         matches = matches.filter(m => m.status === filterStatus); 
+
+                          
+
+                         if (matches.length === 0) { 
+
+                            const message = filterStatus === 'upcoming' ? 'No upcoming matches scheduled for this division.' : 'No results have been recorded for this division.'; 
+
+                            return `<p class="text-gray-400">${message}</p>`; 
+
+                         } 
+
+                          
+
+                         // Sort results by most recent date, schedule by oldest date 
+
+                         matches.sort((a,b) => filterStatus === 'finished' ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date)); 
+
+                          
+
+                         let content = ``; 
+
+                         matches.forEach(match => { 
+
+                             const home = App.maps.teams[match.homeTeamId]; 
+
+                             const away = App.maps.teams[match.awayTeamId]; 
+
+                             const matchDate = new Date(match.date).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }); 
+
+                             content += ` 
+
+                             <div class="bg-gray-900 rounded-lg p-4 mb-4 flex items-center justify-between border border-gray-800"> 
+
+                                 <div class="flex items-center gap-4 w-2/5 justify-end"> 
+
+                                     <span class="font-bold text-lg text-right flex-1 cursor-pointer" data-action="viewTeam" data-team-id="${home.id}">${home.name}</span> 
+
+                                     <img src="${home.logo}" class="w-10 h-10 rounded-full hidden sm:block"> 
+
+                                 </div> 
+
+                                 <div class="text-center w-1/5"> 
+
+                                     ${match.status === 'finished' ? ` 
+
+                                         <div class="text-3xl font-heading">${match.homeScore} - ${match.awayScore}</div> 
+
+                                         <div class="text-xs text-gray-500">Finished</div> 
+
+                                     ` : ` 
+
+                                         <div class="text-xl font-heading">VS</div> 
+
+                                         <div class="text-xs text-brand-secondary">${matchDate}</div> 
+
+                                     `} 
+
+                                 </div> 
+
+                                 <div class="flex items-center gap-4 w-2/5"> 
+
+                                     <img src="${away.logo}" class="w-10 h-10 rounded-full hidden sm:block"> 
+
+                                     <span class="font-bold text-lg flex-1 cursor-pointer" data-action="viewTeam" data-team-id="${away.id}">${away.name}</span> 
+
+                                 </div> 
+
+                             </div>`; 
+
+                         }); 
+
+                         return content; 
+
+                     }, 
+
+                     divisionStats(divisionId) { 
+
+                         const divisionTeamIds = App.db.teams.filter(t => t.divisionId === divisionId).map(t => t.id); 
+
+                         const divisionPlayers = App.db.players.filter(p => divisionTeamIds.includes(p.teamId)); 
+
+                          
+
+                         if (divisionPlayers.length === 0) { 
+
+                            return `<p class="text-gray-400">No player stats available for this division yet.</p>`; 
+
+                         } 
+
+                          
+
+                         let content = ''; 
+
+                         const statsContent = document.createElement('div'); 
+
+                         statsContent.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"; 
+
+                         const statCategories = [ { title: 'Top Scorers', key: 'goals' }, { title: 'Top Playmakers', key: 'assists' }, { title: 'Man of the Match', key: 'motm' } ]; 
+
+                         statCategories.forEach(cat => { 
+
+                             let categoryHTML = `<div class="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-800"><h3 class="text-2xl font-heading text-brand-primary mb-4">${cat.title}</h3><ul class="space-y-3">`; 
+
+                             const topPlayers = [...divisionPlayers].filter(p => p.careerStats.length > 0).sort((a,b) => b.careerStats[0][cat.key] - a.careerStats[0][cat.key]).slice(0,5); 
+
+                             topPlayers.forEach(player => { 
+
+                                 const user = App.db.users.find(u => u.psn === player.psn); 
+
+                                 const team = App.maps.teams[player.teamId]; 
+
+                                 categoryHTML += `<li class="flex items-center justify-between text-sm"><span class="font-semibold cursor-pointer hover:underline" data-action="viewPlayer" data-player-id="${player.id}">${user?.fullName || player.psn}</span><div class="flex items-center gap-2">${team ? `<img src="${team.logo}" class="w-5 h-5 rounded-full">` : ''}<span class="font-bold text-white">${player.careerStats[0][cat.key]}</span></div></li>`; 
+
+                             }); 
+
+                             categoryHTML += `</ul></div>`; 
+
+                             statsContent.innerHTML += categoryHTML; 
+
+                         }); 
+
+                         content += statsContent.outerHTML; 
+
+                         return content; 
+
+                     }, 
+
+                     rosterPlayerCard(player) { 
+
+                         const user = App.db.users.find(u => u.psn === player.psn); 
+
+                         return ` 
+
+                             <div class="bg-gray-800 p-3 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700/50 transition-colors border border-gray-700" data-action="viewPlayer" data-player-id="${player.id}"> 
+
+                                 <div class="flex items-center gap-4"> 
+
+                                     ${this.avatar(user)} 
+
+                                     <div class="flex-grow"> 
+
+                                         <h3 class="font-bold text-lg text-white pointer-events-none">${user?.fullName || 'Unknown'}</h3> 
+
+                                         <p class="text-sm text-gray-400 pointer-events-none">${player.psn}</p> 
+
+                                         <p class="text-xs text-brand-secondary font-bold pointer-events-none">${player.position}</p> 
+
+                                     </div> 
+
+                                 </div> 
+
+                             </div>`; 
+
+                     }, 
+
+                     careerStatsTable(player) { 
+
+                         return `<div class="bg-gray-900 rounded-lg shadow-2xl p-6 border border-gray-800"> 
+
+                             <h2 class="text-3xl font-heading text-white mb-4">Career Statistics</h2> 
+
+                             <div class="overflow-x-auto"><table class="min-w-full text-sm"> 
+
+                                 <thead class="bg-gray-800"><tr><th class="px-4 py-2 text-left">Season</th><th class="px-4 py-2 text-left">Team</th><th class="px-4 py-2 text-center">GP</th><th class="px-4 py-2 text-center">G</th><th class="px-4 py-2 text-center">A</th><th class="px-4 py-2 text-center">MOTM</th><th class="px-4 py-2 text-center">TKL</th><th class="px-4 py-2 text-center">PASS%</th></tr></thead> 
+
+                                 <tbody class="divide-y divide-gray-800"> 
+
+                                     ${player.careerStats.map(s => { 
+
+                                         const team = App.maps.teams[s.teamId]; 
+
+                                         return `<tr class="hover:bg-gray-800"><td class="px-4 py-2 font-bold">${s.season}</td><td class="px-4 py-2 flex items-center gap-2">${team ? `<img src="${team.logo}" class="w-5 h-5 rounded-full"> ${team.name}` : 'N/A'}</td><td class="px-4 py-2 text-center">${s.appearances}</td><td class="px-4 py-2 text-center">${s.goals}</td><td class="px-4 py-2 text-center">${s.assists}</td><td class="px-4 py-2 text-center">${s.motm}</td><td class="px-4 py-2 text-center">${s.tackles}</td><td class="px-4 py-2 text-center">${s.pass_accuracy}%</td></tr>` 
+
+                                     }).join('')} 
+
+                                 </tbody> 
+
+                             </table></div> 
+
+                         </div>`; 
+
+                     }, 
+
+                     playerInfoBox(player, user, team) { 
+
+                         return `<div class="bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-800"> 
+
+                             ${this.avatar(user, 'w-24 h-24 text-4xl mx-auto -mt-16 mb-4')} 
+
+                             <h3 class="text-2xl font-heading text-brand-primary mb-4 text-center">${player.psn}</h3> 
+
+                             <div class="space-y-3 text-sm"> 
+
+                                 <div class="flex justify-between border-b border-gray-800 pb-2"><strong>Name:</strong> <span>${user?.fullName || 'N/A'}</span></div> 
+
+                                 <div class="flex justify-between border-b border-gray-800 pb-2"><strong>Nationality:</strong> <span>${user?.nationality || 'N/A'}</span></div> 
+
+                                 <div class="flex justify-between border-b border-gray-800 pb-2"><strong>Role:</strong> <span>${player.position}</span></div> 
+
+                                 <div class="flex justify-between"><strong>Team:</strong> <a href="#" data-action="viewTeam" data-team-id="${team?.id || ''}" class="text-brand-secondary">${team ? team.name : 'Free Agent'}</a></div> 
+
+                             </div> 
+
+                         </div>`; 
+
+                     }, 
+
+                     transferHistory(playerId) { 
+
+                         const history = App.db.transferHistory.filter(t => t.playerId === playerId).reverse(); 
+
+                         return `<div class="mt-8 bg-gray-900 rounded-lg shadow-2xl p-4 border border-gray-800"> 
+
+                             <h3 class="text-2xl font-heading text-white mb-4">Transfer History</h3> 
+
+                             <div class="space-y-2 text-xs"> 
+
+                                 ${history.map(t => { 
+
+                                     const from = t.fromTeamId ? App.maps.teams[t.fromTeamId]?.name : 'FA'; 
+
+                                     const to = t.toTeamId ? App.maps.teams[t.toTeamId]?.name : 'FA'; 
+
+                                     return `<div class="bg-gray-800 p-2 rounded-md"><p><span class="font-bold">${new Date(t.date).toLocaleDateString()}</span>: ${from} &rarr; ${to}</p></div>` 
+
+                                 }).join('') || '<p class="text-gray-500">No transfer history.</p>'} 
+
+                             </div> 
+
+                         </div>`; 
+
+                     }, 
+
+                      transferOffers(player) { 
+
+                         if (!player) return ''; 
+
+                         const offers = App.db.transferOffers.filter(o => o.playerId === player.id && o.status === 'pending'); 
+
+                         if (offers.length === 0) return ''; 
+
+
+
+                         return `<div class="mb-6 bg-brand-secondary/10 p-4 rounded-lg border border-brand-secondary/50"> 
+
+                             <h2 class="text-2xl font-heading text-brand-secondary mb-3">You have transfer offers!</h2> 
+
+                             <div class="space-y-3"> 
+
+                                 ${offers.map(offer => { 
+
+                                     const fromTeam = App.maps.teams[offer.fromTeamId]; 
+
+                                     return `<div class="bg-gray-800 p-3 rounded-md flex justify-between items-center"> 
+
+                                         <div> 
+
+                                             <p class="font-bold">Offer from ${fromTeam.name}</p> 
+
+                                         </div> 
+
+                                         <div class="flex gap-2"> 
+
+                                             <button data-action="acceptOffer" data-offer-id="${offer.id}" class="bg-green-600 hover:bg-green-700 text-white font-bold py-1 px-3 rounded text-xs">Accept</button> 
+
+                                             <button data-action="rejectOffer" data-offer-id="${offer.id}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-xs">Reject</button> 
+
+                                         </div> 
+
+                                     </div>`; 
+
+                                 }).join('')} 
+
+                             </div> 
+
+                         </div>`; 
+
+                     }, 
+
+                     transferHistoryTable(history) { 
+
+                         if (history.length === 0) { 
+
+                             return `<p class="text-gray-400">No transfer history available.</p>`; 
+
+                         } 
+
+                         return ` 
+
+                         <div class="overflow-x-auto bg-gray-900 rounded-lg shadow-lg border border-gray-800"> 
+
+                             <table class="min-w-full text-sm"> 
+
+                                 <thead class="bg-gray-800"> 
+
+                                     <tr> 
+
+                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase">Date</th> 
+
+                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase">Player</th> 
+
+                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase">From</th> 
+
+                                         <th class="px-4 py-3 text-center text-xs font-medium text-gray-400 uppercase"></th> 
+
+                                         <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase">To</th> 
+
+                                     </tr> 
+
+                                 </thead> 
+
+                                 <tbody class="divide-y divide-gray-800"> 
+
+                                     ${history.map(t => { 
+
+                                         const player = App.db.players.find(p => p.id === t.playerId); 
+
+                                         const user = App.db.users.find(u => u.psn === player?.psn); 
+
+                                         const fromTeam = t.fromTeamId ? App.maps.teams[t.fromTeamId] : null; 
+
+                                         const toTeam = t.toTeamId ? App.maps.teams[t.toTeamId] : null; 
+
+
+
+                                         return ` 
+
+                                         <tr class="hover:bg-gray-800"> 
+
+                                             <td class="px-4 py-2 whitespace-nowrap">${new Date(t.date).toLocaleDateString()}</td> 
+
+                                             <td class="px-4 py-2 whitespace-nowrap font-bold"> 
+
+                                                 <a href="#" class="text-brand-primary hover:underline" data-action="viewPlayer" data-player-id="${player.id}">${user?.fullName || player?.psn}</a> 
+
+                                             </td> 
+
+                                             <td class="px-4 py-2 whitespace-nowrap"> 
+
+                                                 ${fromTeam ? `<a href="#" data-action="viewTeam" data-team-id="${fromTeam.id}" class="flex items-center gap-2 hover:underline"><img src="${fromTeam.logo}" class="w-6 h-6 rounded-full">${fromTeam.name}</a>` : 'Free Agent'} 
+
+                                             </td> 
+
+                                             <td class="px-4 py-2 text-center text-gray-500">&rarr;</td> 
+
+                                             <td class="px-4 py-2 whitespace-nowrap"> 
+
+                                                  ${toTeam ? `<a href="#" data-action="viewTeam" data-team-id="${toTeam.id}" class="flex items-center gap-2 hover:underline"><img src="${toTeam.logo}" class="w-6 h-6 rounded-full">${toTeam.name}</a>` : 'Free Agent'} 
+
+                                             </td> 
+
+                                         </tr> 
+
+                                         `; 
+
+                                     }).join('')} 
+
+                                 </tbody> 
+
+                             </table> 
+
+                         </div>`; 
+
+                     }, 
+
+                     freeAgentCard(player) { 
+
+                         const user = App.db.users.find(u => u.psn === player.psn); 
+
+                         const team = App.db.teams.find(t => t.managerId === App.state.currentUser?.id || t.assistantManagerId === App.state.currentUser?.id); 
+
+                         const hasPendingOffer = App.db.transferOffers.some(o => o.playerId === player.id && o.fromTeamId === team?.id && o.status === 'pending'); 
+
+                          
+
+                         let button = ''; 
+
+                         if (team) { 
+
+                             if (hasPendingOffer) { 
+
+                                 button = `<button disabled class="w-full bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm cursor-not-allowed">Offer Sent</button>`; 
+
+                             } else { 
+
+                                 button = `<button data-action="offerContract" data-player-id="${player.id}" class="w-full bg-brand-primary hover:bg-brand-secondary text-brand-dark font-bold py-2 px-4 rounded-lg text-sm">Offer Contract</button>`; 
+
+                             } 
+
+                         } 
+
+
+
+                         return `<div class="bg-gray-900 p-4 rounded-lg shadow-lg border border-gray-800 text-center"> 
+
+                             <div data-action="viewPlayer" data-player-id="${player.id}" class="cursor-pointer"> 
+
+                                 ${this.avatar(user, 'w-20 h-20 text-3xl mx-auto mb-3')} 
+
+                                 <h3 class="font-bold text-brand-primary text-lg pointer-events-none">${user?.fullName || player.psn}</h3> 
+
+                                 <p class="text-sm text-gray-400 pointer-events-none">${player.psn}</p> 
+
+                                 <p class="text-xs text-gray-500 mb-4 pointer-events-none">${player.position}</p> 
+
+                             </div> 
+
+                            ${button} 
+
+                         </div>`; 
+
+                     }, 
+
+                     rosterManagementRow(player, team) { 
+
+                         const user = App.db.users.find(u => u.psn === player.psn); 
+
+                         const isManager = team.managerId === user.id; 
+
+                         const isAssistant = team.assistantManagerId === user.id; 
+
+                          
+
+                         let roleButton = ''; 
+
+                         if (App.state.currentUser.id === team.managerId && !isManager) { 
+
+                            if (isAssistant) { 
+
+                                 roleButton = `<button data-action="demoteAssistant" data-user-id="${user.id}" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded-lg text-xs">Demote</button>`; 
+
+                            } else { 
+
+                                 roleButton = `<button data-action="promoteAssistant" data-user-id="${user.id}" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded-lg text-xs">Promote</button>`; 
+
+                            } 
+
+                         } 
+
+                          
+
+                         return `<div class="flex justify-between items-center p-2 border-b border-gray-700 last:border-b-0"> 
+
+                             <div> 
+
+                                 <span class="cursor-pointer" data-action="viewPlayer" data-player-id="${player.id}">${user?.fullName || player.psn} (${player.position})</span> 
+
+                                 ${isManager ? '<span class="text-xs bg-brand-primary text-brand-dark font-bold rounded px-2 py-1 ml-2">Manager</span>' : ''} 
+
+                                 ${isAssistant ? '<span class="text-xs bg-brand-secondary text-brand-dark font-bold rounded px-2 py-1 ml-2">Assistant</span>' : ''} 
+
+                             </div> 
+
+                             <div class="flex gap-2"> 
+
+                                 ${roleButton} 
+
+                                 ${!isManager ? `<button data-action="releasePlayer" data-player-id="${player.id}" class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-lg text-xs">Release</button>` : ''} 
+
+                             </div> 
+
+                         </div>`; 
+
+                     }, 
+
+                 } 
+
+             }, 
+
+
+
+             attachEventListeners() { 
+
+                 const mainAndHeader = [this.elements.main, this.elements.header]; 
+
+                 mainAndHeader.forEach(el => { 
+
+                     el.addEventListener('click', (e) => { 
+
+                         const target = e.target; 
+
+                         const actionTarget = target.closest('[data-action]'); 
+
+                         if (!actionTarget) return; 
+
+
+
+                         const action = actionTarget.dataset.action; 
+
+                          
+
+                         const handlers = { 
+
+                             navigate: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.route(actionTarget.dataset.page); 
+
+                                 this.elements.mobileMenu.classList.add('hidden'); 
+
+                             }, 
+
+                             viewTeam: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.route('team', { id: parseInt(actionTarget.dataset.teamId) }); 
+
+                             }, 
+
+                             viewPlayer: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.route('player', { id: parseInt(actionTarget.dataset.playerId) }); 
+
+                             }, 
+
+                             switchDivisionTab: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.state.activeSubPageTab = 'standings'; 
+
+                                 this.state.activeDivisionTab = parseInt(actionTarget.dataset.divisionId); 
+
+                                 this.render(); 
+
+                             }, 
+
+                             switchSubPageTab: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.state.activeSubPageTab = actionTarget.dataset.subpage; 
+
+                                 this.render(); 
+
+                             }, 
+
+                             logout: () => { 
+
+                                 e.preventDefault(); 
+
+                                 this.state.currentUser = null; 
+
+                                 this.route('home'); 
+
+                                 this.showToast('Logged out.'); 
+
+                             }, 
+
+                             editProfile: () => { 
+
+                                 this.state.isProfileInEditMode = true; 
+
+                                 this.render(); 
+
+                             }, 
+
+                             cancelEditProfile: () => { 
+
+                                 this.state.isProfileInEditMode = false; 
+
+                                 this.render(); 
+
+                             }, 
+
+                             toggleReg: () => { 
+
+                                 this.db.config.isTeamRegistrationOpen = !this.db.config.isTeamRegistrationOpen; 
+
+                                 this.showToast(`Team registration is now ${this.db.config.isTeamRegistrationOpen ? 'OPEN' : 'CLOSED'}.`); 
+
+                                 this.render(); 
+
+                             }, 
+
+                             approveTeam: () => { 
+
+                                 const teamId = parseInt(actionTarget.dataset.teamId); 
+
+                                 const divisionId = parseInt(document.getElementById(`division-for-${teamId}`).value); 
+
+                                 const pendingTeam = this.db.pendingTeams.find(t => t.id === teamId); 
+
+                                 const newTeam = { id: Math.max(0, ...this.db.teams.map(t => t.id)) + 1, name: pendingTeam.name, divisionId: divisionId, managerId: pendingTeam.managerId, assistantManagerId: null, logo: 'https://placehold.co/100x100/666/fff?text=NEW', stats: { mp: 0, w: 0, d: 0, l: 0, pts: 0, gf: 0, ga: 0, gd: 0 } }; 
+
+                                 this.db.teams.push(newTeam); 
+
+                                 this.maps.teams[newTeam.id] = newTeam; 
+
+                                 this.db.pendingTeams = this.db.pendingTeams.filter(t => t.id !== teamId); 
+
+                                 this.showToast(`${pendingTeam.name} approved!`); 
+
+                                 this.render(); 
+
+                             }, 
+
+                             rejectTeam: () => { 
+
+                                 const teamId = parseInt(actionTarget.dataset.teamId); 
+
+                                 this.db.pendingTeams = this.db.pendingTeams.filter(t => t.id !== teamId); 
+
+                                 this.showToast(`Team registration rejected.`); 
+
+                                 this.render(); 
+
+                             }, 
+
+                             releasePlayer: () => { 
+
+                                 const playerId = parseInt(actionTarget.dataset.playerId); 
+
+                                 const player = this.maps.players[playerId]; 
+
+                                 if(player && player.teamId){ 
+
+                                     this.logTransfer(playerId, player.teamId, null, 'Released'); 
+
+                                     player.teamId = null; 
+
+                                     this.showToast('Player has been released.'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             }, 
+
+                              offerContract: () => { 
+
+                                 const playerId = parseInt(actionTarget.dataset.playerId); 
+
+                                 const managerTeam = this.db.teams.find(t => t.managerId === this.state.currentUser.id || t.assistantManagerId === this.state.currentUser.id); 
+
+                                 if(managerTeam) { 
+
+                                     this.db.transferOffers.push({ 
+
+                                         id: Date.now(), 
+
+                                         playerId: playerId, 
+
+                                         fromTeamId: managerTeam.id, 
+
+                                         status: 'pending' 
+
+                                     }); 
+
+                                     this.showToast('Transfer offer sent!'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             }, 
+
+                             acceptOffer: () => { 
+
+                                 const offerId = parseInt(actionTarget.dataset.offerId); 
+
+                                 const offer = this.db.transferOffers.find(o => o.id === offerId); 
+
+                                 const player = this.db.players.find(p => p.id === offer.playerId); 
+
+
+
+                                 if (offer && player) { 
+
+                                     this.logTransfer(player.id, player.teamId, offer.fromTeamId, 'Signed'); 
+
+                                     player.teamId = offer.fromTeamId; 
+
+                                     if (!player.careerStats.some(s => s.season === 'OLI S1' && s.teamId === offer.fromTeamId)) { 
+
+                                        player.careerStats.push({ season: 'OLI S1', teamId: offer.fromTeamId, appearances: 0, goals: 0, assists: 0, motm: 0, tackles: 0, pass_accuracy: 0 }); 
+
+                                     } 
+
+                                      
+
+                                     // Reject all other offers for this player 
+
+                                     this.db.transferOffers.forEach(o => { 
+
+                                         if(o.playerId === player.id) o.status = 'rejected'; 
+
+                                     }); 
+
+                                     offer.status = 'accepted'; 
+
+                                     this.showToast('Transfer accepted!'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             }, 
+
+                             rejectOffer: () => { 
+
+                                 const offerId = parseInt(actionTarget.dataset.offerId); 
+
+                                 const offer = this.db.transferOffers.find(o => o.id === offerId); 
+
+                                 if (offer) { 
+
+                                     offer.status = 'rejected'; 
+
+                                     this.showToast('Offer rejected.'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             }, 
+
+                             promoteAssistant: () => { 
+
+                                 const userId = parseInt(actionTarget.dataset.userId); 
+
+                                 const managerTeam = this.db.teams.find(t => t.managerId === this.state.currentUser.id); 
+
+                                 if (managerTeam) { 
+
+                                     managerTeam.assistantManagerId = userId; 
+
+                                     this.showToast('Assistant Manager promoted!'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             }, 
+
+                             demoteAssistant: () => { 
+
+                                 const managerTeam = this.db.teams.find(t => t.managerId === this.state.currentUser.id); 
+
+                                 if (managerTeam) { 
+
+                                     managerTeam.assistantManagerId = null; 
+
+                                     this.showToast('Assistant Manager demoted.'); 
+
+                                     this.render(); 
+
+                                 } 
+
+                             } 
+
+                         }; 
+
+
+
+                         if (handlers[action]) handlers[action](); 
+
+                     }); 
+
+                 }); 
+
+                  
+
+                 this.elements.main.addEventListener('submit', e => { 
+
+                     e.preventDefault(); 
+
+                     const formId = e.target.id; 
+
+                     const formData = new FormData(e.target); 
+
+                     const data = Object.fromEntries(formData.entries()); 
+
+
+
+                     const formHandlers = { 
+
+                         'login-form': () => { 
+
+                             const user = this.db.users.find(u => u.psn === data.psn && u.password === data.password); 
+
+                             if (user) { 
+
+                                 this.state.currentUser = user; 
+
+                                 this.route('home'); 
+
+                                 this.showToast(`Welcome back, ${user.psn}!`); 
+
+                             } else { 
+
+                                 this.showToast('Invalid credentials.', true); 
+
+                             } 
+
+                         }, 
+
+                         'register-form': () => { 
+
+                             if (data.password !== data['confirm-password']) { this.showToast("Passwords don't match.", true); return; } 
+
+                             if (this.db.users.some(u => u.psn === data.psn)) { this.showToast('PSN already registered.', true); return; } 
+
+                             const newUserId = Math.max(0, ...this.db.users.map(u => u.id)) + 1; 
+
+                             const newUser = { id: newUserId, psn: data.psn, password: data.password, role: 'Player', fullName: data.fullname, email: data.email, whatsapp: data.whatsapp, pos1: data.pos1, pos2: data.pos2, nationality: 'Indonesia', profilePictureUrl: null }; 
+
+                             this.db.users.push(newUser); 
+
+                             this.maps.users[newUser.id] = newUser; 
+
+                             const newPlayerId = Math.max(0, ...this.db.players.map(p => p.id)) + 1; 
+
+                             const newPlayer = { id: newPlayerId, psn: data.psn, teamId: null, position: data.pos1, careerStats: [] } 
+
+                             this.db.players.push(newPlayer); 
+
+                             this.maps.players[newPlayer.id] = newPlayer; 
+
+                             this.showToast('Registration successful! Please log in.'); 
+
+                             this.route('login'); 
+
+                         }, 
+
+                         'new-team-form': () => { 
+
+                              if(data.teamName && this.state.currentUser){ 
+
+                                 this.db.pendingTeams.push({ id: Date.now(), name: data.teamName, managerId: this.state.currentUser.id }); 
+
+                                 this.showToast('Team submitted for approval!'); 
+
+                                 this.render(); 
+
+                             } 
+
+                         }, 
+
+                         'edit-profile-form': () => { 
+
+                             const userToUpdate = this.db.users.find(u => u.id === this.state.currentUser.id); 
+
+                             if (userToUpdate) { 
+
+                                 userToUpdate.fullName = data.fullName; 
+
+                                 userToUpdate.email = data.email; 
+
+                                 userToUpdate.whatsapp = data.whatsapp; 
+
+                                 userToUpdate.pos1 = data.pos1; 
+
+                                 userToUpdate.pos2 = data.pos2; 
+
+                                 userToUpdate.profilePictureUrl = data.profilePictureUrl || null; 
+
+                                 this.state.isProfileInEditMode = false; 
+
+                                 this.showToast('Profile updated successfully!'); 
+
+                                 this.render(); 
+
+                             } 
+
+                         }, 
+
+                         'team-settings-form': () => { 
+
+                              const teamToUpdate = this.db.teams.find(t => t.managerId === this.state.currentUser.id || t.assistantManagerId === this.state.currentUser.id); 
+
+                              if (teamToUpdate) { 
+
+                                  teamToUpdate.logo = data.teamLogoUrl; 
+
+                                  this.showToast('Team logo updated!'); 
+
+                                  this.render(); 
+
+                              } 
+
+                         } 
+
+                     }; 
+
+
+
+                     if (formHandlers[formId]) formHandlers[formId](); 
+
+                 }); 
+
+
+
+                 document.getElementById('mobile-menu-button').addEventListener('click', () => this.elements.mobileMenu.classList.toggle('hidden')); 
+
+                  
+
+                 const dropdownContainer = document.getElementById('divisions-dropdown-container'); 
+
+                 dropdownContainer.addEventListener('mouseenter', () => { 
+
+                     clearTimeout(this.state.dropdownTimeout); 
+
+                     this.elements.divisionsDropdown.classList.remove('hidden'); 
+
+                 }); 
+
+                 dropdownContainer.addEventListener('mouseleave', () => { 
+
+                     this.state.dropdownTimeout = setTimeout(() => { 
+
+                         this.elements.divisionsDropdown.classList.add('hidden'); 
+
+                     }, 200); 
+
+                 }); 
+
+             }, 
+
+
+
+             logTransfer(playerId, fromTeamId, toTeamId, type) { 
+
+                 this.db.transferHistory.push({ 
+
+                     id: this.db.transferHistory.length + 1, 
+
+                     playerId, fromTeamId, toTeamId, type, 
+
+                     date: new Date().toISOString().split('T')[0] 
+
+                 }); 
+
+             }, 
+
+
+
+             showToast(message, isError = false) { 
+
+                 const toastId = isError ? 'error-toast' : 'toast'; 
+
+                 const toast = document.getElementById(toastId); 
+
+                 toast.textContent = message; 
+
+                 toast.classList.remove('translate-x-full'); 
+
+                 setTimeout(() => toast.classList.add('translate-x-full'), 3000); 
+
+             }, 
+
+         }; 
+
+
+
+         document.addEventListener('DOMContentLoaded', () => App.init()); 
+
+     </script> 
+
+ </body> 
+
+ </html>
